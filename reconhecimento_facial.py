@@ -15,11 +15,12 @@ while True:
     gray = cv2.cvtColor(video, cv2.COLOR_BGR2GRAY)
 
     # Baseado no algoritmo dado, o computador faz algumas detecções
-    faces = face_cascade.detectMultiScale(gray, 1.3, 5)
+    faces = face_cascade.detectMultiScale(gray, 1.3, 5, minSize = (100, 100))
 
     # Cria um retângulo nos pontos de coordenadas X e Y
     # Também utiliza Largura e Altura
     for(x, y, w, h) in faces:
+        print(f"Face: {w} {h}")
         cv2.rectangle(video, (x, y), (x+w, y+h), (255, 0, 0), 2)
         # "Pega" a matriz que possui a face detectada
         roi_gray = gray[y:y+h, x:x+w]
